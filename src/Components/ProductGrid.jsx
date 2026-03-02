@@ -7,7 +7,7 @@ const products = [
 import { useState } from "react";
 
 export default function ProductGrid(){
-    const [addedId, setAddedId] = useState(null);
+    const [addedItems, setAddedItems] = useState([]);
     return (
         <div className="grid grid-cols-3 gap-8">
             {products.map(product => (
@@ -17,8 +17,8 @@ export default function ProductGrid(){
             </h2>
             <p>£{product.price}</p>
 
-            <button onClick={() => setAddedId(product.id)}className="mt-4 px-4 py-2 bg-blue-600 text-white rounded">
-                {addedId === product.id ? "Added ✓" : "Add to Cart"}
+            <button onClick={() => setAddedItems(prev => [...prev, product.id])}className="mt-4 px-4 py-2 bg-blue-600 text-white rounded">
+                {addedItems.includes(product.id) ? "Added ✓" : "Add to Cart"}
           </button>
         </div>
       ))}
