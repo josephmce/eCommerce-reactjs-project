@@ -76,9 +76,15 @@ export default function ProductGrid(){
               - Spread operator (...) copies existing IDs
               - Then we add the current product.id
             */}
+            {/* 
+              Updated logic so that item cannot be added multiple times:
+              - We check if the product ID already exists in addedItems using .includes()
+              - If it does, we return the existing array (no duplicates)
+              - If it doesn't, we create a new array with the new ID added
+            */}
             <button
               onClick={() =>
-                setAddedItems(prev => [...prev, product.id])
+                setAddedItems(prev => prev.includes(product.id) ? prev : [...prev, product.id])
               }
               className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
             >
