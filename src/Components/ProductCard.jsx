@@ -26,6 +26,7 @@
 
 import { useState } from "react";
 import QuantitySelector from "./QuantitySelector";
+import Button from "./Button";
 
 export default function ProductCard({ product, addedItems, setAddedItems }) {
   
@@ -105,12 +106,9 @@ export default function ProductCard({ product, addedItems, setAddedItems }) {
             If product is already added → show "Added ✓"
             Otherwise → show "Add {quantity} to Cart"
       */}
-      <button
-        onClick={handleAdd}
-        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
-      >
+      <Button onClick={handleAdd} className="mt-4">
         {isAdded ? "Added ✓" : `Add ${quantity} to Cart`}
-      </button>
+      </Button>
     </div>
   );
 }
