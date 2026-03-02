@@ -8,6 +8,7 @@ import Card from './Components/Card'
 import Toggle from './Components/Toggle'
 import Accordion from './Components/Accordion'
 import Product from './Components/product/ProductSection'
+import ProductGrid from './Components/ProductGrid'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -34,6 +35,7 @@ function App() {
       </Card>
     </Container>
     <Product />
+    <ProductGrid />
       <div className="flex items-center justify-center gap-6">
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
