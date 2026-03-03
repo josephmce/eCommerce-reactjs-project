@@ -1,113 +1,68 @@
-/**
- * ProductCard Component
- * ---------------------
- * Renders an individual product card inside the product grid.
- *
- * Responsibilities:
- * - Displays product name and price
- * - Manages its own quantity state
- * - Uses QuantitySelector to modify quantity
- * - Adds product to cart with selected quantity
- * - Prevents duplicate products from being added
- *
- * Props:
- * @param {Object} product - The product object (id, name, price)
- * @param {Array} addedItems - Current cart items from parent state
- * @param {Function} setAddedItems - State setter function from parent
- *
- * Key Concepts Used:
- * - React useState (local component state)
- * - Lifting state up (cart lives in parent)
- * - Functional state updates
- * - Array.find() and Array.some()
- * - Conditional rendering
- * - Immutable state updates
- */
-
 import { useState } from "react";
 import QuantitySelector from "./QuantitySelector";
 import Button from "./Button";
 
-export default function ProductCard({ product, addedItems, setAddedItems }) {
+/**
+ * ProductCard
+ * -----------
+ * - Manages local quantity state
+ * - Adds product to cart with selected quantity
+ * - If product already exists in cart → updates its quantity
+ * - Button always shows "Add {quantity} to Cart"
+ */
+
+export default function ProductCard({ product, cartItems, setCartItems }) {
   
-  /**
-   * Local state for this product's quantity.
-   * Default value is 1.
-   * Each ProductCard manages its own quantity independently.
-   */
+  // Local quantity state (per product card)
   const [quantity, setQuantity] = useState(1);
 
   /**
    * handleAdd
    * ---------
-   * Adds this product to the cart.
-   *
-   * Uses functional state update:
-   * - React passes the previous state into the callback (prev)
-   * - This guarantees we are working with the latest state
-   * - Important because state updates are asynchronous
+   * Adds or updates the product in the cart.
    *
    * Logic:
    * 1. Check if product already exists in cart
-   * 2. If it exists → return previous state (no duplicates)
-   * 3. If it does not exist → return a new array with the product added
+   * 2. If yes → update its quantity
+   * 3. If no → add new item
    */
   const handleAdd = () => {
-    setAddedItems(prev => {
-      // Check if this product is already in the cart
-      const exists = prev.find(item => item.id === product.id);
+    setCartItems(prev => {
+      const existingItem = prev.find(item => item.id === product.id);
 
-      if (exists) {
-        return prev; // Prevent duplicate entries
+      // If product already exists → update quantity
+      if (existingItem) {
+        return prev.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
       }
 
-      // Return a NEW array (immutability)
+      // If product does not exist → add new entry
       return [...prev, { id: product.id, quantity }];
     });
   };
-
-  /**
-   * isAdded
-   * -------
-   * Boolean value that checks whether this product
-   * already exists in the cart.
-   *
-   * Used for conditional rendering of button text.
-   */
-  const isAdded = addedItems.some(item => item.id === product.id);
-
+  const isAdded = cartItems.some(item => item.id === product.id);
   return (
+
     <div className="border p-4 rounded">
-      
+
       {/* Product Name */}
       <h2 className="font-semibold">{product.name}</h2>
 
       {/* Product Price */}
       <p>£{product.price}</p>
 
-      {/* 
-        QuantitySelector Component
-        --------------------------
-        Controlled component pattern:
-        - quantity is passed as a prop
-        - setQuantity updates this component's state
-        - QuantitySelector does NOT own state
-      */}
+      {/* Quantity Selector */}
       <QuantitySelector
         quantity={quantity}
         setQuantity={setQuantity}
       />
 
-      {/* 
-        Add to Cart Button
-        ------------------
-        - Calls handleAdd when clicked
-        - Uses conditional rendering:
-            If product is already added → show "Added ✓"
-            Otherwise → show "Add {quantity} to Cart"
-      */}
+      {/* Add to Cart Button (always shows quantity) */}
       <Button onClick={handleAdd} className="mt-4">
-        {isAdded ? "Added ✓" : `Add ${quantity} to Cart`}
+         {isAdded ? "Added ✓" : `Add ${quantity} to Cart`}
       </Button>
     </div>
   );

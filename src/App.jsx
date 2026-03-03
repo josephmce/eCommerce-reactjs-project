@@ -9,12 +9,16 @@ import Toggle from './Components/Toggle'
 import Accordion from './Components/Accordion'
 import Product from './Components/product/ProductSection'
 import ProductGrid from './Components/ProductGrid'
+import Header from './Components/Header'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [cartItems, setCartItems] = useState([]); // State to manage cart items
 
   return (
     <>
+    <Header cartItems={cartItems} /> {/* Pass cart items to Header */}
+    <ProductGrid cartItems={cartItems} setCartItems={setCartItems} /> {/* ProductGrid will manage cart state and pass it down to ProductCard */}
     <Container>
       <Card>
       <h1 className="text-4xl font-bold text-black">
@@ -35,7 +39,7 @@ function App() {
       </Card>
     </Container>
     <Product />
-    <ProductGrid />
+    
       <div className="flex items-center justify-center gap-6">
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
