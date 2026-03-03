@@ -10,7 +10,6 @@ import Accordion from './Components/Accordion'
 import Product from './Components/product/ProductSection'
 import ProductGrid from './Components/ProductGrid'
 import Header from './Components/Header'
-import { products } from "./data/products"
 
 
 function App() {
@@ -20,7 +19,7 @@ function App() {
   return (
     <>
     <Header cartItems={cartItems} /> {/* Pass cart items to Header */}
-    <ProductGrid products={products} cartItems={cartItems} setCartItems={setCartItems} /> {/* ProductGrid will manage cart state and pass it down to ProductCard */}
+    <ProductGrid cartItems={cartItems} setCartItems={setCartItems} /> {/* ProductGrid will manage cart state and pass it down to ProductCard */}
     <Container>
       <Card>
       <h1 className="text-4xl font-bold text-black">

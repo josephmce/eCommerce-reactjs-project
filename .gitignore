@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+# npm install @reduxjs/toolkit react-redux to install redux toolkit and react-redux
+# npm run dev to start the development server
