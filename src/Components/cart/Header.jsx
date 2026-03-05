@@ -1,9 +1,21 @@
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-export default function Header({ cartItems }) {
-    return (
-        <header className="bg-gray-800 text-white p-4">
-            <h1 className="text-2xl font-bold">My Store</h1>
-            <p className="text-sm mt-2">Items in cart: {cartItems.reduce((total, item) => total + item.quantity, 0)}</p>  {/* Display the number of items in the cart */}
-        </header>
-    );
+export default function Header() {
+  const cartItems = useSelector(state => state.cart.items); //takes this input → returns this output, so: state goes in → state.cart.items comes out
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  return (
+    <header className="flex justify-between p-4">
+      <h1>ReactCore Shop</h1>
+      <Link to="/cart" className="relative">
+        <span>🛒</span>
+        {totalItems > 0 && (
+          <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full px-2 text-xs">
+            {totalItems}
+          </span>
+        )}
+      </Link>
+    </header>
+  );
 }

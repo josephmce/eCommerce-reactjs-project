@@ -9,6 +9,7 @@ import QuantitySelector from "../ui/QuantitySelector";
 import Accordion from "../ui/Accordion";
 import Button from "../ui/Button";
 import Container from "../ui/Container";
+import ProductGrid from "./ProductGrid";
 
 export default function Product() {
     // State hook to manage the quantity of items selected
@@ -23,28 +24,11 @@ export default function Product() {
     return (
         // Container div with spacing, border, padding, and rounded corners
         <Container variant="secondary">
-            
-            {/* Component for selecting product quantity */}
-            <QuantitySelector 
-                quantity={quantity}
-                setQuantity={setQuantity}
-            />
-
-            {/* Primary button that adds items to cart on click */}
-            <Button 
-                variant="primary" 
-                size="lg"
-                onClick={handleAddToCart}
-                
-            >
-                Add {quantity} to Cart
-            </Button>
-
-            {/* Accordion component displaying delivery information */}
+           <ProductGrid />
+            {/* Accordion component to display delivery information */}
             <Accordion title="Delivery Information">
-                Ships in 2-3 working days.
+                <p>We offer free delivery on all orders over £50. Orders under £50 will incur a £5 delivery fee. Delivery times are typically 3-5 business days.</p>
             </Accordion>
-
         </Container>
     );
 }

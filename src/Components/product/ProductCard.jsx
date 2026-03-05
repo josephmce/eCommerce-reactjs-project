@@ -2,6 +2,8 @@ import { useState } from "react";
 import QuantitySelector from "../ui/QuantitySelector";
 import Button from "../ui/Button";
 import Modal from "../ui/Modal";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../features/cart/cartSlice";
 
 /**
  * ProductCard
@@ -13,7 +15,7 @@ import Modal from "../ui/Modal";
  */
 
 export default function ProductCard({ product, cartItems, setCartItems }) {
-  
+  const dispatch = useDispatch(); // Get dispatch function from Redux store to dispatch actions to the cart slice. This allows the component to update the cart state in the Redux store when a product is added or its quantity is updated. By using dispatch, we can call the addToCart action creator from the cart slice, which will handle the logic of adding or updating items in the cart state based on the product and quantity provided.
   // Local quantity state (per product card)
   const [quantity, setQuantity] = useState(1);
 
@@ -47,21 +49,7 @@ export default function ProductCard({ product, cartItems, setCartItems }) {
   //   });
   // };
 const handleAdd = () => {
-  setCartItems(prev => {
-    const existingItem = prev.find(item => item.id === product.id);
-
-    if (existingItem) {
-      return prev.map(item =>
-        item.id === product.id
-          ? { ...item, quantity: item.quantity + quantity }
-          : item
-      );
-    }
-
-    return [...prev, { id: product.id, quantity }];
-  });
-
-  // Open modal after updating cart
+  dispatch(cartActions.addToCart({ productId: product.id, quantity }));
   setIsModalOpen(true);
 };
 
@@ -69,27 +57,13 @@ const handleAdd = () => {
   return (
 
     <div className="border p-4 rounded">
-
-      {/* Product Name */}
       <h2 className="font-semibold">{product.name}</h2>
-
-      {/* Product Price */}
       <p>£{product.price}</p>
-
-      {/* Quantity Selector */}
-      <QuantitySelector
-        quantity={quantity}
-        setQuantity={setQuantity}
-      />
-
-      {/* Add to Cart Button (always shows quantity) */}
+      <QuantitySelector quantity={quantity} setQuantity={setQuantity}/>
       <Button onClick={handleAdd} className="mt-4">
          {isAdded ? "Added ✓" : `Add ${quantity} to Cart`}
       </Button>
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      >
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <h2 className="text-lg font-semibold">
           Added to Cart 🎉
         </h2>

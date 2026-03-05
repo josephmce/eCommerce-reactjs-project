@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Accordion(){
+export default function Accordion({ title, children }) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -11,8 +11,7 @@ export default function Accordion(){
             </button>
             {isOpen && (
                 <div className="mt-2 text-white">
-                    <p>This is the content of the accordion. It can be any React component or HTML element.</p>
-                    <p>Click the button again to hide this content.</p>
+                    {children}
                 </div>
             )}
         </div>

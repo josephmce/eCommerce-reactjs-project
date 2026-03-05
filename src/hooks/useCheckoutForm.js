@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../features/cart/cartSlice";
 
 /**
  * Custom React hook for managing checkout form state and validation.
@@ -17,6 +19,8 @@ import { useState } from "react";
  * const { formData, errors, handleChange, handleSubmit, isFormValid } = useCheckoutForm();
  */
 export default function useCheckoutForm() {
+    // Get dispatch function from Redux store to allow dispatching actions
+    const dispatch = useDispatch();
     // Initialize form data state with empty string values for name, email, and address
     const [formData, setFormData] = useState({
         name: "",
@@ -83,6 +87,7 @@ export default function useCheckoutForm() {
         if (Object.keys(newErrors).length === 0) {
             console.log("Form submitted:", formData);
         }
+        dispatch(cartActions.clearCart());
     };
 
     // Return an object containing form state and handler functions
