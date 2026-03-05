@@ -2,15 +2,15 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Button from './Components/Button'
-import Container from './Components/Container'
-import Card from './Components/Card'
-import Toggle from './Components/Toggle'
-import Accordion from './Components/Accordion'
+import Button from './Components/ui/Button'
+import Container from './Components/ui/Container'
+import Card from './Components/ui/Card'
+import Toggle from './Components/ui/Toggle'
+import Accordion from './Components/ui/Accordion'
 import Product from './Components/product/ProductSection'
-import ProductGrid from './Components/ProductGrid'
-import Header from './Components/Header'
-import Checkout from './Components/Checkout'
+import ProductGrid from './Components/product/ProductGrid'
+import Header from './Components/cart/Header'
+import Checkout from './Components/checkout/Checkout'
 
 
 function App() {
@@ -30,7 +30,6 @@ function App() {
       <h1 className="text-4xl font-bold text-black">
         React & Tailwind
       </h1>
-      <Checkout />
       <Button variant="primary" size="md" className="mt-4">
         Primary Button
       </Button>

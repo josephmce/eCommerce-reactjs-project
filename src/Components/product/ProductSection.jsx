@@ -5,10 +5,10 @@
  */
 
 import { useState } from "react";
-import QuantitySelector from "../QuantitySelector";
-import Accordion from "../Accordion";
-import Button from "../Button";
-import Container from "../Container";
+import QuantitySelector from "../ui/QuantitySelector";
+import Accordion from "../ui/Accordion";
+import Button from "../ui/Button";
+import Container from "../ui/Container";
 
 export default function Product() {
     // State hook to manage the quantity of items selected

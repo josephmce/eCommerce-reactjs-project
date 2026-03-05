@@ -4,12 +4,12 @@ variant ="primary",
 size = "sm",
 className ="",
 ...props }){
-    const baseStyles ="px-4 py-2 rounded-xl font-semibold transition hover:cursor-pointer";
+    const baseStyles ="px-4 py-2 rounded-xl font-semibold transition";
 
     const variants = {
-    primary: "bg-blue-600 text-white hover:bg-blue-700",
-    secondary: "bg-gray-600 text-white hover:bg-gray-700",
-    outline: "border border-gray-600 text-gray-600 hover:bg-gray-100",
+    primary: "bg-blue-600 text-white hover:bg-blue-700 hover:cursor-pointer",
+    secondary: "bg-gray-600 text-white hover:bg-gray-700 hover:cursor-pointer",
+    outline: "border border-gray-600 text-gray-600 hover:bg-gray-100 hover:cursor-pointer",
     disabled: "bg-gray-300 text-gray-500 cursor-not-allowed"
   };
     const sizes = {
