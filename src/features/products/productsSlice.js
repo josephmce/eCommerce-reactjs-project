@@ -8,7 +8,7 @@ export const fetchProducts = createAsyncThunk(
     const response = await fetch("https://fakestoreapi.com/products");
 
     if (!response.ok) {
-      throw new Error("Failed to fetch products");
+      throw new Error("Well this is unfortunate, something went wrong while fetching the products!");
     }
 
     const data = await response.json();

@@ -7,29 +7,29 @@ import ProductCardSkeleton from "./ProductCardSkeleton";
 export default function ProductGrid() {
   const dispatch = useDispatch();
 
-  const { items: products, loading: loadingFromStore, error } = useSelector(
+  const { items: products, loading, error } = useSelector(
     state => state.products
   );
 
   // Local loading state for debugging/throttling
-  const [loading, setLoading] = useState(true);
+  //const [loading, setLoading] = useState(true);
 
-  // 1️⃣ Original fetch products effect
+  // Original fetch products effect
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  // 2️⃣ Debug effect to simulate slow loading
-  useEffect(() => {
+  // Debug effect to simulate slow loading
+  /*useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false); // stop fake loading after 5s
     }, 10000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, []);*/
 
   // Decide what to show based on loading / error / data
-  if (loading || loadingFromStore) return <div className="grid grid-cols-3 gap-6">
+  if (loading) return <div className="grid grid-cols-3 gap-6">
     <ProductCardSkeleton />
     <ProductCardSkeleton />
     <ProductCardSkeleton />
@@ -37,7 +37,14 @@ export default function ProductGrid() {
     <ProductCardSkeleton />
     <ProductCardSkeleton />
   </div>;
-  if (error) return <p className="text-red-500">{error}</p>;
+  if (error) return <div className="flex items-center justify-center p-4">
+  <div className="bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-lg shadow-md max-w-md text-center">
+    <h2 className="text-xl font-semibold mb-2">Oops!</h2>
+    <p className="text-sm">
+      {error || "Something went wrong while fetching products."}
+    </p>
+  </div>
+</div>;
 
   return (
     <div className="grid grid-cols-3 gap-6">
