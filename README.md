@@ -124,24 +124,7 @@ npm run preview
 
 ---
 
-# Project Structure
 
-src/
-├── components/
-│   ├── products/
-│   ├── ui/
-│
-├── features/
-│   ├── cart/
-│   ├── products/
-│
-├── hooks/
-│
-├── pages/
-│
-├── store/
-
----
 
 # Learning Goals Covered
 
