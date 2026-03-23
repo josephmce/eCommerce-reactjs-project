@@ -1,12 +1,17 @@
 // AppWrapper.jsx
 const AppWrapper = ({ children }) => {
   return (
-    <div
-      className="min-h-screen bg-gradient-to-br text-white m-6 rounded-3xl"
-      style={{ background: 'linear-gradient(135deg, #344148 0%, #292B2D 100%)' }}
-    >
-      {children}
-    </div>
+<div
+  className="min-h-screen text-white m-6 rounded-3xl"
+  style={{
+    background: `
+      linear-gradient(229deg, rgba(0,0,0,0) 49.5%, rgba(52,65,72,1) 50%, rgba(41,43,45,1) 100%),
+      linear-gradient(135deg, #344148 0%, #292B2D 100%)
+    `
+  }}
+>
+  {children}
+</div>
   );
 };
 
