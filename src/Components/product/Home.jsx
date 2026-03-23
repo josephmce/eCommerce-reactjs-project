@@ -6,12 +6,13 @@
 
 import { useState } from "react";
 import QuantitySelector from "../ui/QuantitySelector";
-import Accordion from "../ui/Accordion";
+import Hero from "../ui/Hero";
 import Button from "../ui/Button";
 import Container from "../ui/Container";
 import ProductGrid from "./ProductGrid";
 import Navigation from "../ui/Navigation";
 import { Link } from "react-router-dom";
+import ImageCarousel from "../ui/ImageCarousel";
 
 export default function Product() {
     // State hook to manage the quantity of items selected
@@ -25,11 +26,10 @@ export default function Product() {
 
     return (
         // Container div with spacing, border, padding, and rounded corners
-        <Container variant="secondary">
+        <Container>
             {/* Accordion component to display delivery information */}
-            <Accordion title="Delivery Information">
-                <p>We offer free delivery on all orders over £50. Orders under £50 will incur a £5 delivery fee. Delivery times are typically 3-5 business days.</p>
-            </Accordion>
+            <Hero />
+            <ImageCarousel />
         </Container>
     );
 }

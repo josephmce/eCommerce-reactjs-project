@@ -4,16 +4,16 @@ variant ="primary",
 size = "sm",
 className ="",
 ...props }){
-    const baseStyles ="px-4 py-2 rounded-xl font-semibold transition";
+    const baseStyles ="px-4 py-2 font-semibold transition";
 
     const variants = {
-    primary: "bg-blue-600 text-white hover:bg-blue-700 hover:cursor-pointer",
-    secondary: "bg-gray-600 text-white hover:bg-gray-700 hover:cursor-pointer",
-    outline: "border border-gray-600 text-gray-600 hover:bg-gray-100 hover:cursor-pointer",
-    disabled: "bg-gray-300 text-gray-500 cursor-not-allowed",
-    nav_primary: "bg-transparent text-gray-600 hover:bg-gray-100 hover:cursor-pointer",
+    primary: "bg-[#EFEFEF] text-[#465257] hover:cursor-pointer rounded-full hover:bg-white",
+    secondary: "bg-gray-600 text-white hover:bg-gray-700 hover:cursor-pointer rounded-full",
+    outline: "border border-gray-600 text-gray-600 hover:bg-gray-100 hover:cursor-pointer rounded-full",
+    disabled: "bg-gray-300 text-gray-500 cursor-not-allowed rounded-full",
+    nav_primary: "bg-[#EFEFEF] text-gray-600 hover:bg-gray-100 hover:cursor-pointer rounded-full",
     nav_secondary: "bg-transparent text-gray-600 hover:bg-gray-100 hover:cursor-pointer",
-    nav_unselected: "bg-transparent text-gray-400 cursor-not-allowed"
+    nav_unselected: "bg-transparent text-[#EFEFEF] hover:bg-[#586971] hover:cursor-pointer rounded-full"
   };
     const sizes = {
         sm: "px-3 py-1 text-sm",

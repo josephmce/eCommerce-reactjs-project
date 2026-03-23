@@ -1,6 +1,6 @@
 export default function Container({ children, variant = "default" }) {
     const variantClasses = {
-        default: "max-w-6xl mx-auto px-4",
+        default: "mx-auto",
         secondary: "max-w-6xl mx-auto px-4 mt-8"
     };
 
