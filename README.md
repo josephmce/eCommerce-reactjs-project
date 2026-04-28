@@ -92,7 +92,7 @@ https://fakestoreapi.com/products
 
 Clone the repository:
 
-git clone https://github.com/your-username/reactjs-project.git
+git clone https://github.com/your-username/eCommerce-reactjs-project.git
 
 Move into the project folder:
 
